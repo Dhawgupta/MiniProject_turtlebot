@@ -1,8 +1,3 @@
-#if (ARDUINO >= 100)
- #include <Arduino.h>
-#else
- #include <WProgram.h>
-#endif
 #include <ros.h>
 #include <ros/time.h>
 #include <tf/tf.h>
@@ -18,8 +13,8 @@ ros::NodeHandle nh;
 
 
 // target speed variables for the left and right wheel
-int LeftTargetSpeed =0;
-int RightTargetSpeed = 0;
+int16_t LeftTargetSpeed =0;
+int16_t RightTargetSpeed = 0;
 
 
 // callback function for left and right velocities values
@@ -74,7 +69,7 @@ int lastRlsb = 0;
 
 /////////////////////////////////////////////////////////
 //defining the motor pins
-int l1 =4,l2 = 5,r1 = 6,r2 = 7,lpwm = 8,rpwm = 9;
+int l1 =11,l2 = 10,r1 = 9,r2 = 8,lpwm = 6,rpwm = 7;
 
 // setup function
 void setup()
@@ -107,6 +102,7 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(left_encoderPin2), updateLeftEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(right_encoderPin1), updateRightEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(right_encoderPin2), updateRightEncoder, CHANGE);
+  nh.loginfo("Arduino Setup Executed !!!");
 }
 
 
@@ -114,7 +110,7 @@ void setup()
 void loop()
 {
 
-
+  
 
   //writing the encoder data to the ROS variable
   encoderL.data = encoderLvalue;
@@ -132,7 +128,7 @@ void loop()
  
  
  nh.spinOnce();
- delay(1);
+ delay(50);
  
 }
 ///////////////////////////////////////////////////////////////////////////////////
@@ -163,21 +159,11 @@ void updateRightEncoder()
   if(sum == 0b1101 || sum == 0b0100 || sum == 0b0010 || sum == 0b1011) encoderRvalue ++;
   if(sum == 0b1110 || sum == 0b0111 || sum == 0b0001 || sum == 0b1000) encoderRvalue --;
 
-  lastLencoded = encoded; // store last cvalue for next time.
+  lastRencoded = encoded; // store last cvalue for next time.
   
 } 
 
 
-
-///////////////////////////////////////////////////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////////////
-// Code to  update the motor and their target speed using the variables
-// LeftTargetSpeed and RightTargetSpeed ( -255 <= val <= 255) 
-void Update_Motors()
-{
-  moveRightMotor(RightTargetSpeed);
-  moveLeftMotor(LeftTargetSpeed);
-}
 
 //////////////////////////////////////////////////////////////////////////
 // motor running function
@@ -198,13 +184,14 @@ void moveRightMotor(int val)
     digitalWrite(r2,HIGH);
     analogWrite(rpwm,abs(val));
   }
-  else if (val = 0)
+  else if (val == 0)
   {
     digitalWrite(r1,HIGH);
     digitalWrite(r2,HIGH);
     
-  }
-  
+  }  
+  nh.loginfo("Right Motor Speed Updated to : ");
+  nh.loginfo(val);
   
 }
 
@@ -222,14 +209,25 @@ void moveLeftMotor(int val)
     digitalWrite(l2,HIGH);
     analogWrite(lpwm,abs(val));
   }
-  else if (val = 0)
+  else if (val == 0)
   {
     digitalWrite(l1,HIGH);
     digitalWrite(l2,HIGH);
     
   }
-  
+  nh.loginfo("Left Motor Speed Updated to : ");
+  nh.loginfo(val);
   
 }
 
+
+///////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
+// Code to  update the motor and their target speed using the variables
+// LeftTargetSpeed and RightTargetSpeed ( -255 <= val <= 255) 
+void Update_Motors()
+{
+  moveRightMotor(RightTargetSpeed);
+  moveLeftMotor(LeftTargetSpeed);
+}
 

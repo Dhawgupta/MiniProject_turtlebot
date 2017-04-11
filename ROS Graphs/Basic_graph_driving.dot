@@ -1,0 +1,219 @@
+digraph graphname {
+	graph [bb="0,0,1328.9,276.64",
+		compound=True,
+		rank=same,
+		rankdir=LR,
+		ranksep=0.2
+	];
+	node [label="\N"];
+	subgraph cluster_cmd_vel_mux {
+		graph [bb="237.38,122,420.38,251",
+			compound=True,
+			label=cmd_vel_mux,
+			lheight=0.21,
+			lp="328.88,239.5",
+			lwidth=1.10,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		color		 [height=0.5,
+			pos="328.88,202",
+			width=0.79437];
+		t__cmd_vel_mux_input_teleop		 [URL=topic_3A_cmd_vel_mux_input_teleop,
+			height=0.5,
+			label="/cmd_vel_mux/input/teleop",
+			pos="328.88,148",
+			shape=box,
+			tooltip="topic:/cmd_vel_mux/input/teleop",
+			width=2.3194];
+	}
+	subgraph cluster_chefbot_teleop_keyboard {
+		graph [bb="8,149,229.38,224",
+			compound=True,
+			label=chefbot_teleop_keyboard,
+			lheight=0.21,
+			lp="118.69,212.5",
+			lwidth=1.92,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__chefbot_teleop_keyboard		 [URL=_chefbot_teleop_keyboard,
+			height=0.5,
+			label="/chefbot_teleop_keyboard",
+			pos="118.69,175",
+			shape=ellipse,
+			tooltip="/chefbot_teleop_keyboard",
+			width=2.8525];
+	}
+	subgraph cluster_twist_to_motors {
+		graph [bb="428.38,127,586.07,202",
+			compound=True,
+			label=twist_to_motors,
+			lheight=0.21,
+			lp="507.23,190.5",
+			lwidth=1.24,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__twist_to_motors		 [URL=_twist_to_motors,
+			height=0.5,
+			label="/twist_to_motors",
+			pos="507.23,153",
+			shape=ellipse,
+			tooltip="/twist_to_motors",
+			width=1.9679];
+	}
+	subgraph cluster_diff_tf {
+		graph [bb="1018.1,91,1105.6,166",
+			compound=True,
+			label=diff_tf,
+			lheight=0.21,
+			lp="1061.9,154.5",
+			lwidth=0.49,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__diff_tf		 [URL=_diff_tf,
+			height=0.5,
+			label="/diff_tf",
+			pos="1061.9,117",
+			shape=ellipse,
+			tooltip="/diff_tf",
+			width=0.99297];
+	}
+	subgraph cluster_rosout {
+		graph [bb="1234.7,158,1320.9,233",
+			compound=True,
+			label=rosout,
+			lheight=0.21,
+			lp="1277.8,221.5",
+			lwidth=0.47,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__rosout		 [URL=_rosout,
+			height=0.5,
+			label="/rosout",
+			pos="1277.8,184",
+			shape=ellipse,
+			tooltip="/rosout",
+			width=0.97491];
+	}
+	subgraph cluster_rqt_gui_py_node_6381 {
+		graph [bb="958.96,8,1164.7,83",
+			compound=True,
+			label=rqt_gui_py_node_6381,
+			lheight=0.21,
+			lp="1061.9,71.5",
+			lwidth=1.76,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__rqt_gui_py_node_6381		 [URL=_rqt_gui_py_node_6381,
+			height=0.5,
+			label="/rqt_gui_py_node_6381",
+			pos="1061.9,34",
+			shape=ellipse,
+			tooltip="/rqt_gui_py_node_6381",
+			width=2.6359];
+	}
+	subgraph cluster_serial_node {
+		graph [bb="724.07,112,847.96,187",
+			compound=True,
+			label=serial_node,
+			lheight=0.21,
+			lp="786.01,175.5",
+			lwidth=0.88,
+			rank=same,
+			rankdir=LR,
+			ranksep=0.2,
+			style=bold
+		];
+		n__serial_node		 [URL=_serial_node,
+			height=0.5,
+			label="/serial_node",
+			pos="786.01,138",
+			shape=ellipse,
+			tooltip="/serial_node",
+			width=1.4985];
+	}
+	t__rosout	 [URL=topic_3A_rosout,
+		height=0.5,
+		label="/rosout",
+		pos="1199.7,184",
+		shape=box,
+		tooltip="topic:/rosout",
+		width=0.75];
+	t__rosout -> n__rosout	 [penwidth=1,
+		pos="e,1242.7,184 1226.9,184 1228.7,184 1230.5,184 1232.3,184"];
+	t__left_encoder	 [URL=topic_3A_left_encoder,
+		height=0.5,
+		label="/left_encoder",
+		pos="903.46,138",
+		shape=box,
+		tooltip="topic:/left_encoder",
+		width=1.2222];
+	t__left_encoder -> n__diff_tf	 [penwidth=1,
+		pos="e,1027,121.54 947.61,132.21 969.23,129.3 995.36,125.79 1017.1,122.88"];
+	t__cmd_vel_mux_input_teleop -> n__twist_to_motors	 [penwidth=1,
+		pos="e,436.7,151.03 412.63,150.35 417.29,150.48 421.96,150.61 426.61,150.74"];
+	t__right_wheel_speed	 [URL=topic_3A_right_wheel_speed,
+		height=0.5,
+		label="/right_wheel_speed",
+		pos="655.07,158",
+		shape=box,
+		tooltip="topic:/right_wheel_speed",
+		width=1.6944];
+	t__right_wheel_speed -> n__serial_node	 [penwidth=1,
+		pos="e,736.72,145.49 716.39,148.64 719.8,148.12 723.22,147.58 726.62,147.06"];
+	t__right_encoder	 [URL=topic_3A_right_encoder,
+		height=0.5,
+		label="/right_encoder",
+		pos="903.46,84",
+		shape=box,
+		tooltip="topic:/right_encoder",
+		width=1.3194];
+	t__right_encoder -> n__diff_tf	 [penwidth=1,
+		pos="e,1028.3,110.14 951.38,93.901 972.72,98.404 997.78,103.69 1018.5,108.07"];
+	t__left_wheel_speed	 [URL=topic_3A_left_wheel_speed,
+		height=0.5,
+		label="/left_wheel_speed",
+		pos="655.07,104",
+		shape=box,
+		tooltip="topic:/left_wheel_speed",
+		width=1.5972];
+	t__left_wheel_speed -> n__serial_node	 [penwidth=1,
+		pos="e,743.23,126.98 712.63,118.91 719.54,120.74 726.57,122.59 733.4,124.39"];
+	n__chefbot_teleop_keyboard -> t__rosout	 [penwidth=1,
+		pos="e,1188,202.15 138.69,192.86 160.56,212.17 198.51,241.92 237.38,255 350.78,293.15 386.58,269 506.23,269 506.23,269 506.23,269 904.46,269 1021.8,269 1063.1,283.6 1164.7,225 1171.1,221.34 1176.8,216.01 1181.6,210.4"];
+	n__chefbot_teleop_keyboard -> t__cmd_vel_mux_input_teleop	 [penwidth=1,
+		pos="e,245.29,158.71 201.67,164.37 212.65,162.94 223.97,161.48 235.12,160.03"];
+	n__twist_to_motors -> t__rosout	 [penwidth=1,
+		pos="e,1172.6,195.65 545.1,168.31 597.48,188.64 696.86,222 785.01,222 785.01,222 785.01,222 904.46,222 1017.3,222 1050.1,225.55 1162.6,198.13"];
+	n__twist_to_motors -> t__right_wheel_speed	 [penwidth=1,
+		pos="e,593.97,155.94 577.73,155.38 579.77,155.45 581.81,155.52 583.84,155.59"];
+	n__twist_to_motors -> t__left_wheel_speed	 [penwidth=1,
+		pos="e,600.27,122.07 550.8,138.7 563.25,134.51 577.14,129.85 590.58,125.33"];
+	n__diff_tf -> t__rosout	 [penwidth=1,
+		pos="e,1172.7,171.17 1088.1,129.45 1109.4,139.94 1140,155.06 1163.7,166.72"];
+	n__rqt_gui_py_node_6381 -> t__rosout	 [penwidth=1,
+		pos="e,1196.5,165.9 1109.9,49.651 1129.2,58.09 1150.2,70.275 1164.7,87 1181.6,106.5 1190.3,134.91 1194.6,155.95"];
+	n__serial_node -> t__rosout	 [penwidth=1,
+		pos="e,1172.6,185.35 817.94,152.53 829.6,157.36 843.15,162.21 855.96,165 965.52,188.85 1099.2,187.91 1162.3,185.73"];
+	n__serial_node -> t__left_encoder	 [penwidth=1,
+		pos="e,859.13,138 840.01,138 843.01,138 846.03,138 849.03,138"];
+	n__serial_node -> t__right_encoder	 [penwidth=1,
+		pos="e,863.77,102.1 818.26,123.39 829.43,118.16 842.3,112.14 854.55,106.41"];
+}
