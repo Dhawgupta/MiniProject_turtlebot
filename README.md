@@ -20,7 +20,8 @@ python twist_to_motors.py
 
 python diff_tf.py
 
-./chefbot_teleop_key  # this file needs to be modified and will  do it as soon as possible
+roslaunch chefbot_bringup keyboard_teleop.launch # control for the keyboard part of the bot taken from an online reposiotty
+
 
 
 Now in the ROS Graphs directories there are 2 .dot files 
