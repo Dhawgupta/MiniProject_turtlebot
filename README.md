@@ -28,3 +28,10 @@ Now in the ROS Graphs directories there are 2 .dot files
 Basic_graph_driving.dot is the graph which is there for the driving of the bot 
 rosgraph.png is the complete graph with the implementaion of SLAM nodes from gamppping.
 
+Here's an image of the robot without the kinect:
+
+![Robot](IMG_20170410_060251.jpg)
+
+![Robot2](IMG_20170410_091016.jpg)
+
+
